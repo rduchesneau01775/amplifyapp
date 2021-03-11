@@ -3,3 +3,7 @@ type Note @model {
   name: String!
   description: String
 }
+type AmplifyNetbox3 @model {
+  systemIdentifier: String!
+  clientId: String!
+}

@@ -30,3 +30,32 @@ export const listNotes = /* GraphQL */ `
     }
   }
 `;
+export const getAmplifyNetbox3 = /* GraphQL */ `
+  query GetAmplifyNetbox3($id: ID!) {
+    getAmplifyNetbox3(id: $id) {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAmplifyNetbox3s = /* GraphQL */ `
+  query ListAmplifyNetbox3s(
+    $filter: ModelAmplifyNetbox3FilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAmplifyNetbox3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        systemIdentifier
+        clientId
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

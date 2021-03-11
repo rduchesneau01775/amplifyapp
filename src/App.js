@@ -36,6 +36,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src="./carrier-corp-logo.png" />
       <img src={logo} className="App-logo" alt="logo" />
       <h1>QR Code Access Control</h1>
       <h2>By A-Team</h2>

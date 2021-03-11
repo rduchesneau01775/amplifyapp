@@ -34,3 +34,36 @@ export const onDeleteNote = /* GraphQL */ `
     }
   }
 `;
+export const onCreateAmplifyNetbox3 = /* GraphQL */ `
+  subscription OnCreateAmplifyNetbox3 {
+    onCreateAmplifyNetbox3 {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateAmplifyNetbox3 = /* GraphQL */ `
+  subscription OnUpdateAmplifyNetbox3 {
+    onUpdateAmplifyNetbox3 {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteAmplifyNetbox3 = /* GraphQL */ `
+  subscription OnDeleteAmplifyNetbox3 {
+    onDeleteAmplifyNetbox3 {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;

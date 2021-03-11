@@ -43,3 +43,45 @@ export const deleteNote = /* GraphQL */ `
     }
   }
 `;
+export const createAmplifyNetbox3 = /* GraphQL */ `
+  mutation CreateAmplifyNetbox3(
+    $input: CreateAmplifyNetbox3Input!
+    $condition: ModelAmplifyNetbox3ConditionInput
+  ) {
+    createAmplifyNetbox3(input: $input, condition: $condition) {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAmplifyNetbox3 = /* GraphQL */ `
+  mutation UpdateAmplifyNetbox3(
+    $input: UpdateAmplifyNetbox3Input!
+    $condition: ModelAmplifyNetbox3ConditionInput
+  ) {
+    updateAmplifyNetbox3(input: $input, condition: $condition) {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAmplifyNetbox3 = /* GraphQL */ `
+  mutation DeleteAmplifyNetbox3(
+    $input: DeleteAmplifyNetbox3Input!
+    $condition: ModelAmplifyNetbox3ConditionInput
+  ) {
+    deleteAmplifyNetbox3(input: $input, condition: $condition) {
+      id
+      systemIdentifier
+      clientId
+      createdAt
+      updatedAt
+    }
+  }
+`;
