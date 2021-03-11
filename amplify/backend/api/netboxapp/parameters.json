@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "netboxapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}
