@@ -3,61 +3,67 @@ import logo from './logo.svg';
 import './App.css';
 import { API } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { listNotes } from './graphql/queries';
-import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+//import { listNotes } from './graphql/queries';
+//import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
+import { listAmplifyNetbox3s } from './graphql/queries';
+import { createAmplifyNetbox3 as createNbMutation, deleteAmplifyNetbox3 as deleteNbMutation } from './graphql/mutations';
 
-const initialFormState = { name: '', description: '' }
+//const initialFormState = { name: '', description: '' }
+const initialFormState = { systemIdentifier: 'TESTNETBOXID', clientId: 'TESTCLIENTID' }
 
 function App() {
-  const [notes, setNotes] = useState([]);
+//  const [notes, setNotes] = useState([]);
+  const [netboxes, setNbs] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
-    fetchNotes();
-  }, []);
+    fetchNbs();
+  }, [netboxes]);
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    setNotes(apiData.data.listNotes.items);
+  async function fetchNbs() {
+    const apiData = await API.graphql({ query: listAmplifyNetbox3s });
+    setNbs(apiData.data.listAmplifyNetbox3s.items);
   }
 
-  async function createNote() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({ query: createNoteMutation, variables: { input: formData } });
-    setNotes([ ...notes, formData ]);
+  async function createNb() {
+    if (!formData.systemIdentifier || !formData.clientId) {
+      await API.graphql({ query: createNbMutation, variables: { input: formData } });
+      return;
+    }
+    await API.graphql({ query: createNbMutation, variables: { input: formData } });
+    setNbs([ ...netboxes, formData ]);
     setFormData(initialFormState);
   }
 
-  async function deleteNote({ id }) {
-    const newNotesArray = notes.filter(note => note.id !== id);
-    setNotes(newNotesArray);
-    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
+  async function deleteNb({ id }) {
+    const newNbArray = netboxes.filter(netbox => netbox.systemIdentifier !== id);
+    setNbs(newNbArray);
+    await API.graphql({ query: deleteNbMutation, variables: { input: { id } }});
   }
 
   return (
     <div className="App">
-      <img src="./carrier-corp-logo.png" />
       <img src={logo} className="App-logo" alt="logo" />
       <h1>QR Code Access Control</h1>
       <h2>By A-Team</h2>
       <input
         onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Note name"
-        value={formData.name}
+        placeholder="NetBox Identifier"
+        value={formData.systemIdentifier}
       />
       <input
         onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Note description"
-        value={formData.description}
+        placeholder="Client ID"
+        value={formData.clientId}
       />
-      <button onClick={createNote}>Create Note</button>
+      <button onClick={createNb}>Add NetBox</button>
       <div style={{marginBottom: 30}}>
         {
-          notes.map(note => (
-            <div key={note.id || note.name}>
-              <h2>{note.name}</h2>
-              <p>{note.description}</p>
-              <button onClick={() => deleteNote(note)}>Delete note</button>
+          netboxes.map(netbox => (
+            <div key={netbox.systemIdentifier || netbox.clientId}>
+              <p><b>NetBox: </b>{netbox.systemIdentifier}, 
+              {netbox.clientId}</p>
+              <button onClick={() => deleteNb(netbox)}>Remove NetBox</button>
             </div>
           ))
         }
