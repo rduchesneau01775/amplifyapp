@@ -4,6 +4,9 @@ type Note @model {
   description: String
 }
 type AmplifyNetbox3 @model {
+  id: ID!
   systemIdentifier: String!
   clientId: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
