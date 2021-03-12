@@ -7,7 +7,6 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listAmplifyNetbox3s } from './graphql/queries';
 import { createAmplifyNetbox3 as createNbMutation, deleteAmplifyNetbox3 as deleteNbMutation } from './graphql/mutations';
 
-//const initialFormState = { name: '', description: '' }
 const initialFormState = { systemIdentifier: 'TESTNETBOXID', clientId: 'TESTCLIENTID' }
 
 function App() {
@@ -46,12 +45,12 @@ function App() {
       <h1>QR Code Access Control Management Portal</h1>
       <h2>By A-Team</h2>
       <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+        onChange={e => setFormData({ ...formData, 'systemIdentifier': e.target.value})}
         placeholder="NetBox Identifier"
         value={formData.systemIdentifier}
       />
       <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+        onChange={e => setFormData({ ...formData, 'clientId': e.target.value})}
         placeholder="Client ID"
         value={formData.clientId}
       />
